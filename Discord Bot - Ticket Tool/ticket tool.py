@@ -5,19 +5,19 @@ from datetime import datetime
 
 #configuration
 prefix = ">"
-TOKEN = "enter bot token here"
+TOKEN = "ODc4OTE3ODk5MjExOTA3MDgy.YSIKFA.gqPPCcPLWFQASlGNd6dwFmAzoKs"
 color = 0x73ff00 # enter hex color of what u want the embeds color to be (currently set to green)
 bot = commands.Bot(command_prefix=prefix,intents=discord.Intents.all())
 bot.remove_command('help')
 
 
-bot.name_of_ticket_category = "enter name of your ticket category" # put the NAME of ur ticket category
-bot.guild = 0 #enter server id of the server the bot is in
+bot.name_of_ticket_category = "TICKETS" # put the NAME of ur ticket category
+bot.guild = 850852312473403413 #enter server id of the server the bot is in
 bot.support_role = 0 #enter the id of your support role
-bot.bot_id = 0 # enter the id of your discord bot
-bot.paypal_email = "put paypal email address here" # enter your paypal email here
-bot.bitcoin_address = "put bitcoin address here" # enter your bitcoin address here
-bot.log_channel = 0
+bot.bot_id = 878917899211907082 # enter the id of your discord bot
+bot.paypal_email = "killlua92@gmail.com" # enter your paypal email here
+bot.bitcoin_address = "bitcoin:bc1qjhd9swpp6uf9tl3dx7t27ejgpvlxrqf9rgnpcn" # enter your bitcoin address here
+bot.log_channel = 850852312750620674
 
 
 #database connection
@@ -106,7 +106,7 @@ async def on_raw_reaction_add(payload):
                     embed.add_field(name="Payment Method:",value=payment_method.content)
                     embed.add_field(name="Payment Confirmed by User:",value="True")
                     embed.add_field(name="Link to Boost:",value=link.content)
-                    embed.set_footer(text="Please check if you have received payment and process the order - Developed by jaix#1111")
+                    embed.set_footer(text="Please check if you have received payment and process the order")
                     await log_channel.send(embed=embed)
                 else:
                     await channel.send("That is not a valid response")
@@ -121,7 +121,7 @@ async def post_panel(ctx):
         c.execute(f"DROP TABLE ticket_panel;")
         c.execute(f'CREATE TABLE IF NOT EXISTS ticket_panel(channel_id VALUE, message_id VALUE)')
         conn.commit()
-        embed=discord.Embed(description="If you are in need of any support or help please create a ticket by reacting below",color=color,timestamp=datetime.utcnow())
+        embed=discord.Embed(description="Request an Order please create a ticket by reacting below",color=color,timestamp=datetime.utcnow())
         embed.set_author(name="Ticket Panel",icon_url=ctx.author.avatar_url)
         sent = await ctx.send(embed=embed)
         c.execute(f"INSERT INTO ticket_panel (channel_id, message_id) VALUES('{ctx.channel.id}','{sent.id}')")
